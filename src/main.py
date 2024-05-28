@@ -189,17 +189,17 @@ def call_claudia_message_api(query):
     
     st.session_state["context"].append(format_messages(final_answer, AGENT))
 
-    return (final_answer, internal_note, project_not_found_regex,response_json)
+    return (final_answer, internal_note, project_not_found_regex,response_json,json_data)
 
 
 def handle_question(query):
     with st.spinner("Generating response to your query: `{}` ".format(query)):
         # TODO: Change below to call Claudia API
-        text,internal_note ,project_not_found,response_json = call_claudia_message_api(query)
+        text,internal_note ,project_not_found,response_json,json_data = call_claudia_message_api(query)
 
         is_handover =  internal_note != None
 
-        result = {'is_handover': is_handover, 'text': text, 'summary_prompt': internal_note, 'project_not_found': project_not_found, 'response_json': response_json}
+        result = {'is_handover': is_handover, 'text': text, 'summary_prompt': internal_note, 'project_not_found': project_not_found, 'response_json': response_json,'json_data': json_data}
 
         st.session_state.generated.append(result)
         st.session_state.past.append(query)
