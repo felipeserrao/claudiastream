@@ -147,6 +147,8 @@ def format_messages(message: str, role: str) -> dict:
 def format_claudia_input_from_conversation(messages: list, project_name: str, ticket_id: str = None) -> dict:
     if ticket_id in (None, '', [], {}):
         ticket_id = f'demo_{str(uuid.uuid4())}'
+        st.session_state["ticket_id"] = ticket_id
+
 
     claudia_formatted_input = {
         'cloudChatId': ticket_id,
