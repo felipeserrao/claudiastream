@@ -128,8 +128,20 @@ def format_messages(message: str, role: str) -> dict:
     return formatted_message
 
 
-def format_claudia_input_from_conversation(messages: list, project_name: str) -> dict:
-    ticket_id = f'demo_{str(uuid.uuid4())}'
+# def format_claudia_input_from_conversation(messages: list, project_name: str) -> dict:
+#     ticket_id = f'demo_{str(uuid.uuid4())}'
+#
+#     claudia_formatted_input = {
+#         'cloudChatId': ticket_id,
+#         'projectName': project_name,
+#         'messages': messages
+#     }
+#
+#     return claudia_formatted_input
+
+def format_claudia_input_from_conversation(messages: list, project_name: str, ticket_id: str = None) -> dict:
+    if ticket_id is None:
+        ticket_id = f'demo_{str(uuid.uuid4())}'
 
     claudia_formatted_input = {
         'cloudChatId': ticket_id,
@@ -138,6 +150,9 @@ def format_claudia_input_from_conversation(messages: list, project_name: str) ->
     }
 
     return claudia_formatted_input
+
+
+
 
 
 def call_claudia_message_api(query):
