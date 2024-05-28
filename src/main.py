@@ -199,7 +199,7 @@ def handle_question(query):
 
         is_handover =  internal_note != None
 
-        result = {'is_handover': is_handover, 'text': text, 'summary_prompt': internal_note, 'project_not_found': project_not_found, 'response_json': response_json,'json_data': json_data, ,'internal_note': internal_note}
+        result = {'is_handover': is_handover, 'text': text, 'summary_prompt': internal_note, 'project_not_found': project_not_found, 'response_json': response_json,'json_data': json_data,'internal_note': internal_note}
 
         st.session_state.generated.append(result)
         st.session_state.past.append(query)
