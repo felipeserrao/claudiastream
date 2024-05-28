@@ -198,7 +198,7 @@ def handle_question(query):
         text,internal_note ,project_not_found,response_json,json_data = call_claudia_message_api(query)
 
         # is_handover =  internal_note != None
-        is_handover = bool(internal_note)
+        is_handover = internal_note not in (None, '', [], {})
 
         result = {'is_handover': is_handover, 'text': text, 'summary_prompt': internal_note, 'project_not_found': project_not_found, 'response_json': response_json,'json_data': json_data,'internal_note': internal_note}
 
