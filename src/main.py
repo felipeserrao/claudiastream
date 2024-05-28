@@ -159,7 +159,7 @@ def call_claudia_message_api(query):
     st.session_state["context"].append(format_messages(query, USER))
 
     # URL for the API endpoint
-    url = "http://claudia-api.us-east-1.prd.cloudhumans.io/api/test/conversation/"
+    url = "http://claudia-api.us-east-1.prd.cloudhumans.io/api/test/conversation/v2"
 
     # Headers
     headers = {
@@ -197,7 +197,8 @@ def handle_question(query):
         # TODO: Change below to call Claudia API
         text,internal_note ,project_not_found,response_json,json_data = call_claudia_message_api(query)
 
-        is_handover =  internal_note != None
+        # is_handover =  internal_note != None
+        is_handover = bool(internal_note)
 
         result = {'is_handover': is_handover, 'text': text, 'summary_prompt': internal_note, 'project_not_found': project_not_found, 'response_json': response_json,'json_data': json_data,'internal_note': internal_note}
 
