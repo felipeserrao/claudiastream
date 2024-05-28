@@ -195,7 +195,7 @@ def call_claudia_message_api(query):
 def handle_question(query):
     with st.spinner("Generating response to your query: `{}` ".format(query)):
         # TODO: Change below to call Claudia API
-        text,internal_note ,project_not_found = call_claudia_message_api(query)
+        text,internal_note ,project_not_found,response_json = call_claudia_message_api(query)
 
         is_handover =  internal_note != None
 
