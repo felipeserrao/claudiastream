@@ -39,14 +39,16 @@ def get_query_params():
     query_params = st.experimental_get_query_params()
     project_name = query_params.get('project_name', [''])[0]
     language = query_params.get('language', [''])[0]
-    return project_name, language
+    ticket_id = query_params.get('ticket_id', [''])[0]
+    return project_name, language, ticket_id
 
 
-def redirect_to_claudia_url(project_name: str, language: str, company_name: str):
+def redirect_to_claudia_url(project_name: str, language: str, company_name: str, ticket_id: str):
     st.session_state.company_name = company_name
     st.session_state.project_name = project_name
     st.session_state.language = language
-    st.experimental_set_query_params(project_name=project_name, language=language, company_name=company_name)
+    st.session_state.ticket_id = ticket_id
+    st.experimental_set_query_params(project_name=project_name, language=language, company_name=company_name, ticket_id = ticket_id)
 
 def initialize_state():
     params = st.experimental_get_query_params()
@@ -74,6 +76,9 @@ def initialize_state():
 
     if "project_name" not in st.session_state:
         st.session_state.project_name = params.get('project_name', [''])[0]
+
+    if "ticket_id" not in st.session_state:
+        st.session_state.ticket_id = params.get('ticket_id', [''])[0]
 
 
 import mimetypes
@@ -165,7 +170,7 @@ def call_claudia_message_api(query):
     headers = {
         "Content-Type": "application/json"
     }
-    json_data = json.dumps(format_claudia_input_from_conversation(st.session_state["context"], st.session_state["project_name"]))
+    json_data = json.dumps(format_claudia_input_from_conversation(st.session_state["context"], st.session_state["project_name"], st.session_state["ticket_id"]))
 
     # Send the POST request
     response = requests.post(url, data=json_data, headers=headers)
