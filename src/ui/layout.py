@@ -157,17 +157,17 @@ def render_conversation(clear_chat):
                         st.error("Your IDS has expired! Our demo link has a time limit of **3 days**. To generate a new demo environment, please click [here](https://www.cloudhumans.com/claudia-demo).", icon="⏳")
                     elif generated_content['is_handover']:
                         st.success(response_text, icon="🤖")
-                        st.success(generated_content['response_json'])
-                        st.success(generated_content['json_data'])
-                        st.success(generated_content['is_handover'])
-                        st.success(generated_content['internal_note'])
+                        # st.success(generated_content['response_json'])
+                        # st.success(generated_content['json_data'])
+                        # st.success(generated_content['is_handover'])
+                        # st.success(generated_content['internal_note'])
                         st.warning("*This represents a simulated private note, showcasing what your agents would receive when claudIA escalates an issue.*\n\n--------\n\n" + response_note, icon="⚠️")
                     else:
                         st.success(response_text, icon="🤖")
-                        st.success(generated_content['response_json'])
-                        st.success(generated_content['json_data'])
-                        st.success(generated_content['is_handover'])
-                        st.success(generated_content['internal_note'])
+                        # st.success(generated_content['response_json'])
+                        # st.success(generated_content['json_data'])
+                        # st.success(generated_content['is_handover'])
+                        # st.success(generated_content['internal_note'])
                     if i:
                         st.divider()
 
