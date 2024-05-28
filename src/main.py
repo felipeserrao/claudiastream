@@ -159,7 +159,7 @@ def call_claudia_message_api(query):
     st.session_state["context"].append(format_messages(query, USER))
 
     # URL for the API endpoint
-    url = "http://claudia-api.us-east-1.prd.cloudhumans.io/api/test/conversation/v2"
+    url = "http://claudia-api.us-east-1.prd.cloudhumans.io/api/test/conversation/"
 
     # Headers
     headers = {
