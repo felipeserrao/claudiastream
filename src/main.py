@@ -189,7 +189,7 @@ def call_claudia_message_api(query):
     
     st.session_state["context"].append(format_messages(final_answer, AGENT))
 
-    return (final_answer, internal_note, project_not_found_regex)
+    return (final_answer, internal_note, project_not_found_regex,response_json)
 
 
 def handle_question(query):
@@ -199,7 +199,7 @@ def handle_question(query):
 
         is_handover =  internal_note != None
 
-        result = {'is_handover': is_handover, 'text': text, 'summary_prompt': internal_note, 'project_not_found': project_not_found} 
+        result = {'is_handover': is_handover, 'text': text, 'summary_prompt': internal_note, 'project_not_found': project_not_found, 'response_json': response_json}
 
         st.session_state.generated.append(result)
         st.session_state.past.append(query)
